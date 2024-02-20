@@ -4,16 +4,16 @@ import java.time.Year;
 import java.util.Random;
 
 public class Student {
-    String firstName = ConstantValues.NO_NAME;
-    String lastName = ConstantValues.NO_NAME;
-    int id;
-    double bachelorCredits;
-    double masterCredits;
-    String titleOfMastersThesis = ConstantValues.NO_TITLE;
-    String titleOfBachelorThesis = ConstantValues.NO_TITLE;
-    int startYear = Year.now().getValue();
-    int graduationYear;
-    String birthDate = ConstantValues.NO_BIRTHDATE;
+    private String firstName = ConstantValues.NO_NAME;
+    private String  lastName = ConstantValues.NO_NAME;
+    private int id;
+    private double bachelorCredits;
+    private double masterCredits;
+    private String titleOfMastersThesis = ConstantValues.NO_TITLE;
+    private String titleOfBachelorThesis = ConstantValues.NO_TITLE;
+    private int startYear = Year.now().getValue();
+    private int graduationYear;
+    private String birthDate = ConstantValues.NO_BIRTHDATE;
 
     Student()  {
         this.id = getRandomId();
