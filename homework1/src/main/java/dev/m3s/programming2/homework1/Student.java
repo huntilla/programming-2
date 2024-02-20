@@ -281,9 +281,8 @@ public class Student {
         if (day == 29 && (month == 2 && checkLeapYear(year))) {
             return true;
         }
-        return true;
-//        return day <= 31 && (month == 1 || month == 3 || month == 5 || month == 7
-//                || month == 8 || month == 10 || month == 12);
+        return day <= 31 && (month == 1 || month == 3 || month == 5 || month == 7
+                || month == 8 || month == 10 || month == 12);
     }
 
     // Methods to help with toString
