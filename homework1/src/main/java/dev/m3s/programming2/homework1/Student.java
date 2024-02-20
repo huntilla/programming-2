@@ -74,7 +74,7 @@ public class Student {
     }
 
     public void setMasterCredits(final double masterCredits) {
-        if (masterCredits >= 0.0 && bachelorCredits <= 300.0) {
+        if (masterCredits >= 0.0 && masterCredits <= 300.0) {
             this.masterCredits = masterCredits;
         }
     }
