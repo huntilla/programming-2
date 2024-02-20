@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.regex.PatternSyntaxException;
 
 public class Student {
-    private static Week1Tests week1Tests = new Week1Tests();
+    //private static Week1Tests week1Tests = new Week1Tests();
     private String firstName = ConstantValues.NO_NAME;
     private String  lastName = ConstantValues.NO_NAME;
     private int id;
