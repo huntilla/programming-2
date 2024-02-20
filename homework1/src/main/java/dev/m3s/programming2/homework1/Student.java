@@ -159,6 +159,7 @@ public class Student {
 
     public String setPersonId(final String personID) {
         //System.out.println(personID);
+        //System.out.println(checkPersonIDNumber(personID));
         if (!checkPersonIDNumber(personID)) {
             return "Invalid birthday!";
         }
@@ -195,6 +196,7 @@ public class Student {
     }
 
     private boolean checkValidCharacter(final String personID) {
+        //System.out.println(personID);
         String birthDate = personID.substring(0, 6);
         //System.out.println(birthDate);
         String individualNumber = personID.substring(7, 10);
@@ -212,7 +214,8 @@ public class Student {
     }
 
     private boolean checkPersonIDNumber(final String personID) {
-        if (personID.length() != 11) {
+        //System.out.println(personID);
+        if (personID == null || personID.length() != 11) {
             return false;
         }
         return personID.charAt(6) == 'A' || personID.charAt(6) == '+' || personID.charAt(6) == '-';
@@ -265,7 +268,7 @@ public class Student {
         if (day == 29 && (month == 2 && checkLeapYear(year))) {
             return true;
         }
-        return day == 31 && (month == 1 || month == 3 || month == 5 || month == 7
+        return day <= 31 && (month == 1 || month == 3 || month == 5 || month == 7
                 || month == 8 || month == 10 || month == 12);
     }
 
@@ -405,7 +408,7 @@ public class Student {
         student1.setStartYear(2001);
         student1.setGraduationYear(2020);
 
-        student2.setPersonId("221199-123A");
+        student2.setPersonId("220146+611K");
         student2.setTitleOfBachelorThesis("A new exciting purpose of life");
         student2.setBachelorCredits(65);
         student2.setMasterCredits(22);
@@ -427,7 +430,7 @@ public class Student {
         //test1();
         //test2();
         //test3();
-        //test1_v2();
+        test1_v2();
 
         //System.out.println();
     }
