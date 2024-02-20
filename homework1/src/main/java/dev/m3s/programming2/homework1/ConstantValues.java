@@ -3,7 +3,7 @@ package dev.m3s.programming2.homework1;
 public class ConstantValues {
     public static final String NO_NAME = "No name";
     public static final String NO_TITLE= "No title";
-    public static final String NO_BIRTHDATE = "Not available";
+    public static final String NO_BIRTHDATE = "\"Not available\"";
     public static final String INVALID_BIRTHDAY = "Invalid birthday!";
     public static final String INCORRECT_CHECKMARK = "Incorrect check mark!";
     public static final int MIN_ID = 1;
