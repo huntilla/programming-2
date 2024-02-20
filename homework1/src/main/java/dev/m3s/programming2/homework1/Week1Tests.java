@@ -2,6 +2,8 @@ package dev.m3s.programming2.homework1;
 
 public class Week1Tests {
 
+    Student student;
+
     public static void test1() {
         Student student1 = new Student();
         Student student2 = new Student("Mouse", "Mickey");
@@ -98,5 +100,7 @@ public class Week1Tests {
         System.out.println(student1);
         System.out.println(student2);
         System.out.println(student3);
+
+        System.out.println();
     }
 }

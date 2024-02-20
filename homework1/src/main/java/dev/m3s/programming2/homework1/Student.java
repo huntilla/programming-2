@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.regex.PatternSyntaxException;
 
 public class Student {
-    //private static Week1Tests week1Tests = new Week1Tests();
+    private static Week1Tests week1Tests = new Week1Tests();
     private String firstName = ConstantValues.NO_NAME;
     private String  lastName = ConstantValues.NO_NAME;
     private int id;
@@ -275,10 +275,10 @@ public class Student {
         if (day <= 30 && (month == 4 || month == 6 || month == 9 || month == 11)) {
             return true;
         }
-        if (day == 28 && (month == 2 && !checkLeapYear(year))) {
+        if (day <= 28 && (month == 2 && !checkLeapYear(year))) {
             return true;
         }
-        if (day == 29 && (month == 2 && checkLeapYear(year))) {
+        if (day <= 29 && (month == 2 && checkLeapYear(year))) {
             return true;
         }
         return day <= 31 && (month == 1 || month == 3 || month == 5 || month == 7
