@@ -20,8 +20,12 @@ public class Student {
     }
 
     Student(String lname, String fname) {
-        this.lastName = lname;
-        this.firstName = fname;
+        if (lname != null) {
+            this.lastName = lname;
+        }
+        if (fname != null) {
+            this.firstName = fname;
+        }
         this.id = getRandomId();
     }
 
@@ -111,7 +115,7 @@ public class Student {
 
     public String setGraduationYear(final int graduationYear) {
         if (canGraduate()) {
-            if (graduationYear <= Year.now().getValue()) {
+            if (graduationYear <= Year.now().getValue() && graduationYear > 2000) {
                 this.graduationYear = graduationYear;
                 return "Ok";
             } else return "Check graduation year";
