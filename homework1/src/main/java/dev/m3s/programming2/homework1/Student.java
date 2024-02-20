@@ -100,7 +100,7 @@ public class Student {
     }
 
     public void setStartYear(final int startYear) {
-        if (startYear >= 2000 && startYear <= Year.now().getValue()) {
+        if (startYear > 2000 && startYear <= Year.now().getValue()) {
             this.startYear = startYear;
         }
     }
