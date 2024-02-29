@@ -118,7 +118,7 @@ public class Student {
 
     public String setGraduationYear(final int graduationYear) {
         if (canGraduate()) {
-            if (graduationYear <= Year.now().getValue() && graduationYear > 2000) {
+            if (graduationYear >= getStartYear() && graduationYear <= Year.now().getValue()) {
                 this.graduationYear = graduationYear;
                 return "Ok";
             } else return "Check graduation year";
