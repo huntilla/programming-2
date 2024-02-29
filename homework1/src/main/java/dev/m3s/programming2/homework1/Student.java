@@ -199,7 +199,8 @@ public class Student {
         char character = Character.toLowerCase(personID.charAt(10));
         int digits = Integer.parseInt((birthDate + individualNumber));
 
-        char[] controlCharacters = {'0', '1', '2', '3', '4', '5','6', '7', '8', '9','a', 'b', 'c', 'd', 'e', 'f', 'h', 'j', 'k', 'l',
+        char[] controlCharacters = {'0', '1', '2', '3', '4', '5','6', '7', '8', '9','a', 'b',
+                'c', 'd', 'e', 'f', 'h', 'j', 'k', 'l',
                 'm', 'n', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y'};
         int remainder = digits % 31;
         return character == controlCharacters[remainder];
