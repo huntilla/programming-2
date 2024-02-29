@@ -159,8 +159,8 @@ public class Student {
     // Generates a random Id between 1-100
     private int getRandomId() {
         Random rand = new Random();
-        int upperbound = 100;
-        return rand.nextInt(upperbound) + 1;
+        //int upperbound = 100;
+        return rand.nextInt(ConstantValues.MAX_ID) + ConstantValues.MIN_ID;
     }
 
     public String setPersonId(final String personID) {
