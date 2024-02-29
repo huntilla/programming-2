@@ -135,10 +135,7 @@ public class Student {
     }
 
     public boolean hasGraduated() {
-        if (canGraduate() && getGraduationYear() != 0) {
-            return getGraduationYear() <= Year.now().getValue();
-        }
-        return false;
+        return graduationYear != 0;
     }
 
     // Checks if student can graduate. Needs to have thesis titles and required credits.
