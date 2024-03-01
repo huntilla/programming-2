@@ -183,10 +183,10 @@ public class Student {
 
         String birthdate = String.format("%s.%s.%d", day, month, yearInt);
         if (!checkBirthdate(birthdate)) {
-            return "Invalid birthday!";
+            return ConstantValues.INVALID_BIRTHDAY;
         }
         if (!checkValidCharacter(personID)) {
-            return "Incorrect check mark!";
+            return ConstantValues.INCORRECT_CHECKMARK;
         }
         setBirthDate(birthdate);
         return "Ok";
@@ -300,14 +300,14 @@ public class Student {
     // Custom toString
     public String toString() {
         String string = String.format("Student id: %d\n" +
-                "FirstName: %s, LastName: %s\n" +
-                "Date of birth: %s\n" +
-                "Status: %s\n" +
-                "StartYear: %d (%s)\n" +
-                "BachelorCredits: %s\n" +
-                "TitleOfBachelorThesis: \"%s\"\n" +
-                "MasterCredits: %s\n" +
-                "TitleOfMastersThesis: \"%s\"\n",
+                "\tFirstName: %s, LastName: %s\n" +
+                "\tDate of birth: %s\n" +
+                "\tStatus: %s\n" +
+                "\tStartYear: %d (%s)\n" +
+                "\tBachelorCredits: %s\n" +
+                "\tTitleOfBachelorThesis: \"%s\"\n" +
+                "\tMasterCredits: %s\n" +
+                "\tTitleOfMastersThesis: \"%s\"\n",
                 getId(), getFirstName(), getLastName(), getBirthDate(), toStringStatus(),
                 getStartYear(), toStringStartYear(), toStringBachelorCredits(),  getTitleOfBachelorThesis(),
                 toStringMasterCredits(), getTitleOfMastersThesis());
