@@ -172,8 +172,8 @@ public class Student {
 
     // Checks if student can graduate. Needs to have thesis titles and required credits.
     private boolean canGraduate() {
-        if (!degrees[ConstantValues.BACHELOR_TYPE].getDegreeTitle().equals(ConstantValues.NO_TITLE) &&
-                !degrees[ConstantValues.MASTER_TYPE].getDegreeTitle().equals(ConstantValues.NO_TITLE)) {
+        if (!degrees[ConstantValues.BACHELOR_TYPE].getTitleOfThesis().equals(ConstantValues.NO_TITLE) &&
+                !degrees[ConstantValues.MASTER_TYPE].getTitleOfThesis().equals(ConstantValues.NO_TITLE)) {
             return degrees[ConstantValues.BACHELOR_TYPE].getCredits() >= ConstantValues.BACHELOR_CREDITS
                     && degrees[ConstantValues.MASTER_TYPE].getCredits() >= ConstantValues.MASTER_CREDITS;
         }
