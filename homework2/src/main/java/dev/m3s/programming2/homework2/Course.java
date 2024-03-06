@@ -63,10 +63,9 @@ public class Course {
     }
 
     public void setCourseCode(final int courseCode, Character courseBase) {
+        courseBase = Character.toUpperCase(courseBase);
         if (courseCode > 0 && courseCode < 1000000)
-            if (Character.toUpperCase(courseBase) == 'A'
-                    || Character.toUpperCase(courseBase) == 'P'
-                    || Character.toUpperCase(courseBase) == 'S') {
+            if (courseBase == 'A' || courseBase == 'P' || courseBase == 'S') {
                 setCourseBase(courseBase);
                 this.courseCode = String.format("%d%c", courseCode, courseBase);
             }
@@ -77,7 +76,7 @@ public class Course {
     }
 
     private void setCourseBase(Character courseBase) {
-        this.courseBase = courseBase;
+        this.courseBase = Character.toUpperCase(courseBase);
     }
 
     public int getPeriod() {

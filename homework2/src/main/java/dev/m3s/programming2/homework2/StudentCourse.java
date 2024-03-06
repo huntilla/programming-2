@@ -44,7 +44,7 @@ public class StudentCourse {
 
     private boolean checkGradeValidity(final int gradeNum) {
         return (gradeNum >= ConstantValues.MIN_GRADE && gradeNum <= ConstantValues.MAX_GRADE)
-                || (gradeNum == ConstantValues.GRADE_FAILED || gradeNum == ConstantValues.GRADE_ACCEPTED);
+                || (Character.toUpperCase(gradeNum) == ConstantValues.GRADE_FAILED || (Character.toUpperCase(gradeNum) == ConstantValues.GRADE_ACCEPTED));
     }
 
     public boolean isPassed() {

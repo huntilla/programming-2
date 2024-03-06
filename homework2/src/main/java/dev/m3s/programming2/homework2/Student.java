@@ -27,13 +27,13 @@ public class Student {
     }
 
     Student(String lname, String fname) {
+        this();
         if (lname != null) {
             this.lastName = lname;
         }
         if (fname != null) {
             this.firstName = fname;
         }
-        this.id = getRandomId();
     }
 
     public String getFirstName() {
