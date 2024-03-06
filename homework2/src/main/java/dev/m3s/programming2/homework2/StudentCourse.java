@@ -75,7 +75,7 @@ public class StudentCourse {
     }
 
     public String toString() {
-        return String.format("%s Year: %d, Grade: %s.", getCourse().toString(), getYear(), toStringGrade());
+        return String.format("[%s Year: %d, Grade: %s.]", getCourse().toString(), getYear(), toStringGrade());
     }
 
     public static void main(String[] args) {

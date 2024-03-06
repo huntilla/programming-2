@@ -309,7 +309,7 @@ public class Student {
 
         System.out.println(student1);
 
-        student1.setBirthDate("");
+        student1.setBirthDate("230498-045T");
         student1.setTitleOfThesis(0, "Christmas - The most wonderful time of the year");
         student1.setTitleOfThesis(1, "Dreaming of a white Christmas");
         student1.printDegrees();
