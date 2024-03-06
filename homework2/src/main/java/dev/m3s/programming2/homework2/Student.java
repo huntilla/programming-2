@@ -309,7 +309,7 @@ public class Student {
 
         System.out.println(student1);
 
-        student1.setBirthDate("230498-045T");
+        student1.setBirthDate("230403A519K");
         student1.setTitleOfThesis(0, "Christmas - The most wonderful time of the year");
         student1.setTitleOfThesis(1, "Dreaming of a white Christmas");
         student1.printDegrees();
@@ -332,7 +332,7 @@ public class Student {
 
     public static void main(String[] args) {
         //Student student1 =  new Student();
-        test1();
+        //test1();
         //test2();
         //test3();
         //week1Tests.test1_v2();
