@@ -104,23 +104,6 @@ public class Student {
     }
 
     public int addCourses(final int i, StudentCourse[] courses) {
-//        boolean isNull = false;
-//        int initialCount = 0;
-//        if (i >= 0 && i < degreeCount && courses != null) {
-//            if (degrees[i] != null) {
-//                initialCount = degrees[i].getCount();
-//            }
-//            for (int j = 0; j < courses.length; j++) {
-//                if (courses[j] == null) {
-//                    isNull = true;
-//                    break;
-//                }
-//            }
-//            if (!isNull) {
-//                degrees[i].addStudentCourses(courses);
-//            }
-//        }
-//        return degrees[i].getCount() - initialCount;
         int count = 0;
 
         if (i >= 0 && i < degreeCount && courses != null) {
@@ -332,7 +315,7 @@ public class Student {
 
     public static void main(String[] args) {
         //Student student1 =  new Student();
-        test1();
+        //test1();
         //test2();
         //test3();
         //week1Tests.test1_v2();

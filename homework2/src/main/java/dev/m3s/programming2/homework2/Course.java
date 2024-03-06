@@ -114,10 +114,10 @@ public class Course {
     }
 
     public static void main(String[] args) {
-        Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5, true);
-        Course course2 = new Course("Programming 2", 811234, 'P', 0, 4, 12, true);
-
-        System.out.println(course1);
-        System.out.println(course2);
+//        Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5, true);
+//        Course course2 = new Course("Programming 2", 811234, 'P', 0, 4, 12, true);
+//
+//        System.out.println(course1);
+//        System.out.println(course2);
     }
 }

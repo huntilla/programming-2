@@ -135,17 +135,17 @@ public class Degree {
     }
 
     public static void main(String[] args) {
-        Degree degree1 = new Degree();
-
-        Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5, false);
-        Course course2 = new Course("Programming 2", 811104, 'P', 1, 1, 5, false);
-        StudentCourse studentCourse2 = new StudentCourse(course1, 2, 2013);
-        StudentCourse studentCourse1 = new StudentCourse(course2, 2, 2013);
-        degree1.addStudentCourse(studentCourse2);
-        degree1.addStudentCourse(studentCourse1);
-        degree1.setDegreeTitle("Jaas queen");
-        degree1.setTitleOfThesis("UwU Senpai");
-
-        System.out.println(degree1);
+//        Degree degree1 = new Degree();
+//
+//        Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5, false);
+//        Course course2 = new Course("Programming 2", 811104, 'P', 1, 1, 5, false);
+//        StudentCourse studentCourse2 = new StudentCourse(course1, 2, 2013);
+//        StudentCourse studentCourse1 = new StudentCourse(course2, 2, 2013);
+//        degree1.addStudentCourse(studentCourse2);
+//        degree1.addStudentCourse(studentCourse1);
+//        degree1.setDegreeTitle("Jaas queen");
+//        degree1.setTitleOfThesis("UwU Senpai");
+//
+//        System.out.println(degree1);
     }
 }
