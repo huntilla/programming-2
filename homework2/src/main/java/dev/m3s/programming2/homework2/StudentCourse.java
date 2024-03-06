@@ -43,12 +43,19 @@ public class StudentCourse {
     }
 
     private boolean checkGradeValidity(final int gradeNum) {
-        return (gradeNum >= ConstantValues.MIN_GRADE && gradeNum <= ConstantValues.MAX_GRADE)
-                || (Character.toUpperCase(gradeNum) == ConstantValues.GRADE_FAILED || (Character.toUpperCase(gradeNum) == ConstantValues.GRADE_ACCEPTED));
+        if (course.isNumericGrade()
+                && (gradeNum >= ConstantValues.MIN_GRADE && gradeNum <= ConstantValues.MAX_GRADE)) {
+            return true;
+        }
+        return (!course.isNumericGrade() && (Character.toUpperCase(gradeNum) == ConstantValues.GRADE_FAILED
+                || Character.toUpperCase(gradeNum) == ConstantValues.GRADE_ACCEPTED));
     }
 
     public boolean isPassed() {
-        return !(getGradeNum() == 0 || getGradeNum() == ConstantValues.GRADE_FAILED);
+       if (course.isNumericGrade()) {
+           return getGradeNum() != ConstantValues.MIN_GRADE;
+       }
+       return getGradeNum() == ConstantValues.GRADE_ACCEPTED;
     }
 
     public int getYear() {

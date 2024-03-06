@@ -81,13 +81,11 @@ public class Degree {
 
     public double getCredits() {
         double credits = 0;
-        if (getCourses() != null) {
             for (int i = 0; i < getCourses().length; i++) {
                 if (isCourseCompleted(getCourses()[i])) {
                     credits += getCourses()[i].getCourse().getCredits();
                 }
             }
-        }
         return credits;
     }
 
