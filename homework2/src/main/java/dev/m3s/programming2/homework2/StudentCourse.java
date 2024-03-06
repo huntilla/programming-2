@@ -13,7 +13,7 @@ public class StudentCourse {
     StudentCourse(Course course, final int gradeNum, final int yearCompleted) {
         this.course = course;
         setGrade(gradeNum);
-        this.yearCompleted = yearCompleted;
+        setYear(yearCompleted);
     }
 
     public Course getCourse() {

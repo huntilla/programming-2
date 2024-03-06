@@ -289,7 +289,7 @@ public class Student {
         StudentCourse studentCourse8 = new StudentCourse(course8,2, 2020);
         StudentCourse studentCourse9 = new StudentCourse(course9, 0, 2021);
         StudentCourse studentCourse10 = new StudentCourse(course10, 'A', 2021);
-        StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2022);
+        StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2025);
 
         StudentCourse[] bachelor = {studentCourse1, studentCourse2, studentCourse3, studentCourse4, studentCourse5};
         StudentCourse[] master = {studentCourse6, studentCourse7, studentCourse8, studentCourse9, studentCourse10, studentCourse11};
