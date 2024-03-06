@@ -61,7 +61,7 @@ public class Degree {
         double credits = 0;
 
         for (int i = 0; i < getCourses().length; i++) {
-            if (getCourses()[i].getCourse().getCourseBase() == base) {
+            if (isCourseCompleted(getCourses()[i]) && getCourses()[i].getCourse().getCourseBase() == base) {
                 credits += getCourses()[i].getCourse().getCredits();
             }
         }
@@ -72,7 +72,7 @@ public class Degree {
         double credits = 0;
 
         for (int i = 0; i < getCourses().length; i++) {
-            if (getCourses()[i].getCourse().getCourseType() == courseType) {
+            if (isCourseCompleted(getCourses()[i]) && getCourses()[i].getCourse().getCourseType() == courseType) {
                 credits += getCourses()[i].getCourse().getCredits();
             }
         }
