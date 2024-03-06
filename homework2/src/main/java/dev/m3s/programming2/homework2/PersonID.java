@@ -7,11 +7,19 @@ public class PersonID {
     Student student;
     private String birthDate = ConstantValues.NO_BIRTHDATE;
 
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public String setPersonId(final String personID) {
         //System.out.println(personID);
         //System.out.println(checkPersonIDNumber(personID));
         if (!checkPersonIDNumber(personID)) {
-            return "Invalid birthday!";
+            return ConstantValues.INVALID_BIRTHDAY;
         }
         String day = personID.substring(0,2);
         //System.out.println("day: " + day);
@@ -35,13 +43,13 @@ public class PersonID {
         //System.out.println(birthdate);
         //System.out.println(checkBirthdate(birthdate));
         if (!checkBirthdate(birthdate)) {
-            return "Invalid birthday!";
+            return ConstantValues.INVALID_BIRTHDAY;
         }
         //System.out.println(checkValidCharacter(personID));
         if (!checkValidCharacter(personID)) {
-            return "Incorrect check mark!";
+            return ConstantValues.INCORRECT_CHECKMARK;
         }
-        student.setBirthDate(birthDate);
+        setBirthDate(birthdate);
         return "Ok";
     }
 
@@ -57,7 +65,8 @@ public class PersonID {
         int digits = Integer.parseInt((birthDate + individualNumber));
         //System.out.println(digits);
 
-        char[] controlCharacters = {'0', '1', '2', '3', '4', '5','6', '7', '8', '9','a', 'b', 'c', 'd', 'e', 'f', 'h', 'j', 'k', 'l',
+        char[] controlCharacters = {'0', '1', '2', '3', '4', '5','6', '7', '8', '9',
+                'a', 'b', 'c', 'd', 'e', 'f', 'h', 'j', 'k', 'l',
                 'm', 'n', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y'};
         int remainder = digits % 31;
         //System.out.println(remainder);

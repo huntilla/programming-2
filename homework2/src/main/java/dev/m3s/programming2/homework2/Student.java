@@ -1,24 +1,29 @@
 package dev.m3s.programming2.homework2;
 
+import javax.crypto.Cipher;
+import java.lang.reflect.Array;
 import java.time.Year;
 import java.util.Random;
 import java.util.regex.PatternSyntaxException;
 
 public class Student {
     //private static Week1Tests week1Tests = new Week1Tests();
+    private static PersonID personID = new PersonID();
     private String firstName = ConstantValues.NO_NAME;
     private String  lastName = ConstantValues.NO_NAME;
     private int id;
-    private double bachelorCredits;
-    private double masterCredits;
-    private String titleOfMastersThesis = ConstantValues.NO_TITLE;
-    private String titleOfBachelorThesis = ConstantValues.NO_TITLE;
     private int startYear = Year.now().getValue();
     private int graduationYear;
+    private int degreeCount = 3;
+    private Degree[] degrees;
     private String birthDate = ConstantValues.NO_BIRTHDATE;
 
-    private Student()  {
+    Student()  {
         this.id = getRandomId();
+        degrees = new Degree[degreeCount];
+        for (int i = 0; i < degreeCount; i++) {
+            degrees[i] = new Degree();
+        }
     }
 
     Student(String lname, String fname) {
@@ -56,48 +61,8 @@ public class Student {
     }
 
     public void setId(final int id) {
-        if (id >= 1 && id <= 100) {
+        if (id >= ConstantValues.MIN_ID && id <= ConstantValues.MAX_ID) {
             this.id = id;
-        }
-    }
-
-    public double getBachelorCredits() {
-        return bachelorCredits;
-    }
-
-    public void setBachelorCredits(final double bachelorCredits) {
-        if (bachelorCredits >= 0.0 && bachelorCredits <= 300.0) {
-            this.bachelorCredits = bachelorCredits;
-        }
-    }
-
-    public double getMasterCredits() {
-        return masterCredits;
-    }
-
-    public void setMasterCredits(final double masterCredits) {
-        if (masterCredits >= 0.0 && masterCredits <= 300.0) {
-            this.masterCredits = masterCredits;
-        }
-    }
-
-    public String getTitleOfMastersThesis() {
-        return titleOfMastersThesis;
-    }
-
-    public void setTitleOfMastersThesis(String titleOfMastersThesis) {
-        if (titleOfMastersThesis != null) {
-            this.titleOfMastersThesis = titleOfMastersThesis;
-        }
-    }
-
-    public String getTitleOfBachelorThesis() {
-        return titleOfBachelorThesis;
-    }
-
-    public void setTitleOfBachelorThesis(String titleOfBachelorThesis) {
-        if (titleOfBachelorThesis != null) {
-            this.titleOfBachelorThesis = titleOfBachelorThesis;
         }
     }
 
@@ -117,35 +82,100 @@ public class Student {
 
     public String setGraduationYear(final int graduationYear) {
         if (canGraduate()) {
-            if (graduationYear <= Year.now().getValue() && graduationYear > 2000) {
+            if (graduationYear >= getStartYear() && graduationYear <= Year.now().getValue()) {
                 this.graduationYear = graduationYear;
                 return "Ok";
             } else return "Check graduation year";
         }
-        return "Check the required studies";
+        return "Check amount of required credits";
+    }
+
+    public void setDegreeTitle(final int i, String dName) {
+        if (i >= 0 && i < degreeCount && dName != null) {
+            degrees[i].setDegreeTitle(dName);
+        }
+    }
+
+    public boolean addCourse(final int i, StudentCourse course) {
+        if (i >= 0 && i < degreeCount && course != null) {
+            return degrees[i].addStudentCourse(course);
+        }
+        return false;
+    }
+
+    public int addCourses(final int i, StudentCourse[] courses) {
+//        boolean isNull = false;
+//        int initialCount = 0;
+//        if (i >= 0 && i < degreeCount && courses != null) {
+//            if (degrees[i] != null) {
+//                initialCount = degrees[i].getCount();
+//            }
+//            for (int j = 0; j < courses.length; j++) {
+//                if (courses[j] == null) {
+//                    isNull = true;
+//                    break;
+//                }
+//            }
+//            if (!isNull) {
+//                degrees[i].addStudentCourses(courses);
+//            }
+//        }
+//        return degrees[i].getCount() - initialCount;
+        int count = 0;
+
+        if (i >= 0 && i < degreeCount && courses != null) {
+            for (StudentCourse course : courses) {
+                if (degrees[i].addStudentCourse(course)) count++;
+            }
+        }
+        return count;
+
+    }
+
+    public void printCourses() {
+        for (int i = 0; i < degrees.length; i++) {
+            if (degrees[i] != null) {
+                degrees[i].printCourses();
+            }
+        }
+    }
+
+    public void printDegrees() {
+        for (int i = 0; i < degrees.length; i++) {
+            //if (degrees[i] != null) {
+                System.out.println(degrees[i].toString());
+            //}
+        }
+    }
+
+    public void setTitleOfThesis(final int i, String title) {
+        if (i >= 0 && i < degreeCount && title != null) {
+            degrees[i].setTitleOfThesis(title);
+        }
     }
 
     public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public String setBirthDate(String personId) {
+        if (personID.setPersonId(personId).equals("Ok")) {
+            this.birthDate = personID.getBirthDate();
+            return personID.getBirthDate();
+        }
+        return "No change";
     }
 
     public boolean hasGraduated() {
-        if (canGraduate() && getGraduationYear() != 0) {
-            return getGraduationYear() <= Year.now().getValue();
-        }
-        return false;
+        return graduationYear != 0;
     }
 
     // Checks if student can graduate. Needs to have thesis titles and required credits.
     private boolean canGraduate() {
-        if (!getTitleOfBachelorThesis().equals(ConstantValues.NO_TITLE) &&
-                !getTitleOfMastersThesis().equals(ConstantValues.NO_TITLE)) {
-            return getBachelorCredits() >= ConstantValues.BACHELOR_CREDITS
-                    && getMasterCredits() >= ConstantValues.MASTER_CREDITS;
+        if (!degrees[ConstantValues.BACHELOR_TYPE].getDegreeTitle().equals(ConstantValues.NO_TITLE) &&
+                !degrees[ConstantValues.MASTER_TYPE].getDegreeTitle().equals(ConstantValues.NO_TITLE)) {
+            return degrees[ConstantValues.BACHELOR_TYPE].getCredits() >= ConstantValues.BACHELOR_CREDITS
+                    && degrees[ConstantValues.MASTER_TYPE].getCredits() >= ConstantValues.MASTER_CREDITS;
         }
         return false;
     }
@@ -161,8 +191,8 @@ public class Student {
     // Generates a random Id between 1-100
     private int getRandomId() {
         Random rand = new Random();
-        int upperbound = 100;
-        return rand.nextInt(upperbound) + 1;
+        //int upperbound = 100;
+        return rand.nextInt(ConstantValues.MAX_ID) + ConstantValues.MIN_ID;
     }
 
     // Methods to help with toString
@@ -180,44 +210,128 @@ public class Student {
     }
 
     private String toStringBachelorCredits() {
-        if (getBachelorCredits() >= ConstantValues.BACHELOR_CREDITS) {
-            return String.format("%.01f ==> All required bachelor credits completed " +
-                    "(%.01f/%.01f)", getBachelorCredits(), getBachelorCredits(), ConstantValues.BACHELOR_CREDITS);
+        String string = String.format("%.01f\n", degrees[ConstantValues.BACHELOR_TYPE].getCredits());
+        if (degrees[ConstantValues.BACHELOR_TYPE].getCredits() >= ConstantValues.BACHELOR_CREDITS) {
+            string = string + String.format("\t\t\t\tTotal bachelor credits completed (%.01f/%.01f)\n" +
+                     "\t\t\t\tTitle of BSc Thesis: \"%s\"",
+                    degrees[ConstantValues.BACHELOR_TYPE].getCredits(), ConstantValues.BACHELOR_CREDITS,
+                    degrees[ConstantValues.BACHELOR_TYPE].getTitleOfThesis());
+            return string;
         }
-        return String.format("%.01f ==> Missing bachelor credits %.01f (%.01f/%.01f)",
-                getBachelorCredits(), ConstantValues.BACHELOR_CREDITS - getBachelorCredits(),
-                getBachelorCredits(), ConstantValues.BACHELOR_CREDITS);
+        string = string + String.format("\t\t\t\tMissing bachelor credits %.01f (%.01f/%.01f)\n" +
+                "\t\t\t\tTitle of BSc Thesis: \"%s\"",
+                ConstantValues.BACHELOR_CREDITS - degrees[ConstantValues.BACHELOR_TYPE].getCredits(),
+                degrees[ConstantValues.BACHELOR_TYPE].getCredits(), ConstantValues.BACHELOR_CREDITS,
+                degrees[ConstantValues.BACHELOR_TYPE].getTitleOfThesis());
+        return string;
     }
 
     private String toStringMasterCredits() {
-        if (getMasterCredits() >= ConstantValues.MASTER_CREDITS) {
-            return String.format("%.01f ==> All required master's credits completed " +
-                    "(%.01f/%.01f)", getMasterCredits(), getMasterCredits(), ConstantValues.MASTER_CREDITS);
+        String string = String.format("%.01f\n", degrees[ConstantValues.MASTER_TYPE].getCredits());
+        if (degrees[ConstantValues.MASTER_TYPE].getCredits() >= ConstantValues.MASTER_CREDITS) {
+            string = string + String.format("\t\t\t\tTotal master's credits completed (%.01f/%.01f)\n" +
+                            "\t\t\t\tTitle of Master Thesis: \"%s\"",
+                    degrees[ConstantValues.MASTER_TYPE].getCredits(), ConstantValues.MASTER_CREDITS,
+                    degrees[ConstantValues.MASTER_TYPE].getTitleOfThesis());
+            return string;
         }
-        return String.format("%.01f ==> Missing master's credits %.01f (%.01f/%.01f)",
-                getMasterCredits(), ConstantValues.MASTER_CREDITS - getMasterCredits(),
-                getMasterCredits(), ConstantValues.MASTER_CREDITS);
+        string = string + String.format("\t\t\t\tMissing master's credits %.01f (%.01f/%.01f)\n" +
+                        "\t\t\t\tTitle of Master Thesis: \"%s\"",
+                ConstantValues.MASTER_CREDITS - degrees[ConstantValues.MASTER_TYPE].getCredits(),
+                degrees[ConstantValues.MASTER_TYPE].getCredits(), ConstantValues.MASTER_CREDITS,
+                degrees[ConstantValues.MASTER_TYPE].getTitleOfThesis());
+        return string;
+    }
+
+    private double toStringTotalCredits() {
+        return degrees[ConstantValues.BACHELOR_TYPE].getCredits() + degrees[ConstantValues.MASTER_TYPE].getCredits();
     }
 
     // Custom toString
     public String toString() {
         String string = String.format("Student id: %d\n" +
-                "FirstName: %s, LastName: %s\n" +
-                "Date of birth: %s\n" +
-                "Status: %s\n" +
-                "StartYear: %d (%s)\n" +
-                "BachelorCredits: %s\n" +
-                "TitleOfBachelorThesis: \"%s\"\n" +
-                "MasterCredits: %s\n" +
-                "TitleOfMastersThesis: \"%s\"\n",
+                "\t\tFirst name: %s, Last name: %s\n" +
+                "\t\tDate of birth: %s\n" +
+                "\t\tStatus: %s\n" +
+                "\t\tStart year: %d (%s)\n" +
+                "\t\tTotal credits: %.01f\n" +
+                "\t\tBachelorCredits: %s\n" +
+                "\t\tMasterCredits: %s\n",
                 getId(), getFirstName(), getLastName(), getBirthDate(), toStringStatus(),
-                getStartYear(), toStringStartYear(), toStringBachelorCredits(),  getTitleOfBachelorThesis(),
-                toStringMasterCredits(), getTitleOfMastersThesis());
+                getStartYear(), toStringStartYear(), toStringTotalCredits(),
+                toStringBachelorCredits(), toStringMasterCredits());
 
         return string;
     }
 
+    private static void test1() {
+        Student student1 =  new Student();
+
+        Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5.0, true);
+        Course course2 = new Course("All kinds of basic studies", 112233, 'P', 1, 2, 45.0, true);
+        Course course3 = new Course("More basic studies", 223344, 'a', 1, 1, 50.5, true);
+        Course course4 = new Course("Even more basic studies", 556677, 'a', 0, 3, 50.0, true);
+        Course course5 = new Course("Final basic studies", 123123, 'A', 1, 4, 50.5, true);
+        Course course6 = new Course("Programming 2", 616161, 'A', 1, 3, 25.0, true);
+        Course course7 = new Course("All kinds of master studies", 717171, 'P', 0, 2, 45.0, true);
+        Course course8 = new Course("More master studies", 818181, 'A', 1, 1, 25.0, true);
+        Course course9 = new Course("Even more master studies", 919191, 'S', 1, 3, 20.0, true);
+        Course course10 = new Course("Extra master studies", 666666, 'S', 0, 5, 8.0, false);
+        Course course11 = new Course("Final master studies", 888888, 'S', 1, 5, 18.0, false);
+
+        StudentCourse studentCourse1 = new StudentCourse(course1, 1, 2013);
+        StudentCourse studentCourse2 = new StudentCourse(course2, 1, 2014);
+        StudentCourse studentCourse3 = new StudentCourse(course3, 1, 2015);
+        StudentCourse studentCourse4 = new StudentCourse(course4, 4, 2016);
+        StudentCourse studentCourse5 = new StudentCourse(course5, 5, 2017);
+        StudentCourse studentCourse6 = new StudentCourse(course6, 1, 2018);
+        StudentCourse studentCourse7 = new StudentCourse(course7, 1, 2019);
+        StudentCourse studentCourse8 = new StudentCourse(course8,2, 2020);
+        StudentCourse studentCourse9 = new StudentCourse(course9, 0, 2021);
+        StudentCourse studentCourse10 = new StudentCourse(course10, 'A', 2021);
+        StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2022);
+
+        StudentCourse[] bachelor = {studentCourse1, studentCourse2, studentCourse3, studentCourse4, studentCourse5};
+        StudentCourse[] master = {studentCourse6, studentCourse7, studentCourse8, studentCourse9, studentCourse10, studentCourse11};
+
+        student1.setDegreeTitle(0, "Bachelor of Science");
+        student1.setDegreeTitle(1, "Master of Science");
+        student1.setTitleOfThesis(0, "Bachelor thesis title");
+        student1.setTitleOfThesis(1, "Masters thesis title");
+
+        student1.addCourses(0, bachelor);
+        student1.addCourses(1, master);
+
+        student1.setStartYear(2001);
+        student1.setGraduationYear(2020);
+        student1.setFirstName("Donald");
+        student1.setLastName("Duck");
+
+        System.out.println(student1);
+
+        student1.setBirthDate("230403A519K");
+        student1.setTitleOfThesis(0, "Christmas - The most wonderful time of the year");
+        student1.setTitleOfThesis(1, "Dreaming of a white Christmas");
+        student1.printDegrees();
+        studentCourse9.setGrade(3);
+
+        System.out.println(student1);
+
+        student1.printDegrees();
+        student1.printCourses();
+        studentCourse11.setGrade('X');
+
+        System.out.println(studentCourse11);
+        studentCourse11.setGrade('a');
+        System.out.println(studentCourse11);
+        studentCourse1.setGrade(6);
+        System.out.println(studentCourse1);
+        studentCourse1.setGrade(5);
+        System.out.println(studentCourse1);
+    }
+
     public static void main(String[] args) {
+        //Student student1 =  new Student();
         //test1();
         //test2();
         //test3();

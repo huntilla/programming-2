@@ -15,8 +15,21 @@ public class Course {
     Course(String name, final int code, Character courseBase, final int type,
            final int period, final double credits, boolean numericGrade) {
         setName(name);
-        setCourseCode(code);
+        setCourseCode(code, courseBase);
+        setCourseType(type);
+        setPeriod(period);
+        setCredits(credits);
+        setNumericGrade(numericGrade);
+    }
 
+    Course(Course course) {
+        setName(course.getName());
+        setCourseBase(course.getCourseBase());
+        setCourseType(course.getCourseType());
+        setPeriod(course.getPeriod());
+        setCredits(course.getCredits());
+        setNumericGrade(course.isNumericGrade());
+        this.courseCode = course.getCourseCode();
     }
 
     public String getName() {
@@ -24,47 +37,67 @@ public class Course {
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCourseCode() {
-        return courseCode;
-    }
-
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
-
-    public Character getCourseBase() {
-        return courseBase;
-    }
-
-    public void setCourseBase(Character courseBase) {
-        this.courseBase = courseBase;
+        if (name != null && !name.isEmpty()) {
+            this.name = name;
+        }
     }
 
     public int getCourseType() {
         return courseType;
     }
 
-    public void setCourseType(int courseType) {
-        this.courseType = courseType;
+    public void setCourseType(final int courseType) {
+        if (courseType == ConstantValues.OPTIONAL || courseType == ConstantValues.MANDATORY) {
+            this.courseType = courseType;
+        }
+    }
+
+    public String getCourseTypeString() {
+        if (getCourseType() == ConstantValues.OPTIONAL) {
+            return "Optional";
+        } return "Mandatory";
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(final int courseCode, Character courseBase) {
+        if (courseCode > 0 && courseCode < 1000000)
+            if (Character.toUpperCase(courseBase) == 'A'
+                    || Character.toUpperCase(courseBase) == 'P'
+                    || Character.toUpperCase(courseBase) == 'S') {
+                setCourseBase(courseBase);
+                this.courseCode = String.format("%d%c", courseCode, courseBase);
+            }
+    }
+
+    public Character getCourseBase() {
+        return courseBase;
+    }
+
+    private void setCourseBase(Character courseBase) {
+        this.courseBase = courseBase;
     }
 
     public int getPeriod() {
         return period;
     }
 
-    public void setPeriod(int period) {
-        this.period = period;
+    public void setPeriod(final int period) {
+        if (period >= ConstantValues.MIN_PERIOD && period <= ConstantValues.MAX_PERIOD) {
+            this.period = period;
+        }
     }
 
     public double getCredits() {
         return credits;
     }
 
-    public void setCredits(double credits) {
-        this.credits = credits;
+    private void setCredits(final double credits) {
+        if (credits >= ConstantValues.MIN_CREDITS && credits <= ConstantValues.MAX_COURSE_CREDITS) {
+            this.credits = credits;
+        }
     }
 
     public boolean isNumericGrade() {
@@ -75,5 +108,17 @@ public class Course {
         this.numericGrade = numericGrade;
     }
 
+    @Override
+    public String toString() {
+        return String.format("[%s (%5.02f cr), \"%s\". %s, period: %d.]",
+                getCourseCode(), getCredits(), getName(), getCourseTypeString(), getPeriod());
+    }
 
+    public static void main(String[] args) {
+        Course course1 = new Course("Programming 1", 811104, 'P', 1, 1, 5, true);
+        Course course2 = new Course("Programming 2", 811234, 'P', 0, 4, 12, true);
+
+        System.out.println(course1);
+        System.out.println(course2);
+    }
 }
