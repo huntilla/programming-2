@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Student extends Person {
-    //private static Week1Tests week1Tests = new Week1Tests();
     private PersonID personID = new PersonID();
     private int id;
     private int startYear = Year.now().getValue();
@@ -242,12 +241,6 @@ public class Student extends Person {
     }
 
     public static void main(String[] args) {
-        //Student student1 =  new Student();
-        //test1();
-        //test3();
-        //week1Tests.test1_v2();
-
-
-        //System.out.println();
+        //StudentTest.test2();
     }
 }
