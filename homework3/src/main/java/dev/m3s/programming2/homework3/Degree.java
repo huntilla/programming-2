@@ -109,11 +109,11 @@ public class Degree {
         List<Double> returnlist = new ArrayList<>();
 
         if (type == ConstantValues.ALL) {
-            List<Double> bachelorGPA = getGPA(ConstantValues.OPTIONAL);
-            List<Double> masterGPA = getGPA(ConstantValues.MANDATORY);
+            List<Double> optionalGPA = getGPA(ConstantValues.OPTIONAL);
+            List<Double> mandatoryGPA = getGPA(ConstantValues.MANDATORY);
 
             for (int i = 0; i < 2; i++) {
-                returnlist.add(bachelorGPA.get(i) + masterGPA.get(i));
+                returnlist.add(optionalGPA.get(i) + mandatoryGPA.get(i));
             }
             returnlist.add(returnlist.get(0) / returnlist.get(1));
             return returnlist;
@@ -135,7 +135,10 @@ public class Degree {
         }
         returnlist.add(sum);
         returnlist.add(count);
-        returnlist.add(Math.round(average * 100d) / 100d);
+        returnlist.add(average);
+        if (type == ConstantValues.MANDATORY) {
+            returnlist.add(Math.round(average * 100d) / 100d);
+        }
         return returnlist;
     }
 
