@@ -135,7 +135,7 @@ public class Degree {
         }
         returnlist.add(sum);
         returnlist.add(count);
-        returnlist.add(average);
+        returnlist.add(Math.round(average * 100d) / 100d);
         return returnlist;
     }
 
