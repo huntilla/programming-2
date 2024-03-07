@@ -47,7 +47,7 @@ public class DesignatedCourse {
 
     @Override
     public String toString() {
-        String string = String.format("[course=%s, year=%d", course.toString(), getYear());
+        String string = String.format("[course=%s, year=%d]", course.toString(), getYear());
         return string;
     }
 }

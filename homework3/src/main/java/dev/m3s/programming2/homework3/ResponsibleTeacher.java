@@ -22,7 +22,7 @@ public class ResponsibleTeacher extends Employee implements Teacher, Payment {
             } else {
                 stringBuilder.append("\t\tTeacher: ");
             }
-            stringBuilder.append(course.toString()).append("]\n");
+            stringBuilder.append(course.toString()).append("\n");
         }
         return stringBuilder.toString();
     }
