@@ -108,6 +108,7 @@ public class Degree {
 
     public List<Double> getGPA(int type) {
         List<Double> returnlist = new ArrayList<>();
+        boolean isAll;
 
         if (type == ConstantValues.ALL) {
             List<Double> optionalGPA = getGPA(ConstantValues.OPTIONAL);
@@ -137,7 +138,8 @@ public class Degree {
         }
         returnlist.add(sum);
         returnlist.add(count);
-        returnlist.add(average);
+        DecimalFormat df = new DecimalFormat("#.00");
+        returnlist.add(Double.valueOf(df.format(average)));
         //System.out.println(average);
         return returnlist;
     }
