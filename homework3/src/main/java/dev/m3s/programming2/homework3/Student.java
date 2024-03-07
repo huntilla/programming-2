@@ -215,7 +215,7 @@ public class Student extends Person {
         if (count > 0) {
             average = sum / count;
         }
-        return Math.round(average * 100d) / 100d;
+        return Math.round(average * 10d) / 10d;
     }
 
     // Custom toString

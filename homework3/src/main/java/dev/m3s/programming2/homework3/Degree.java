@@ -137,7 +137,7 @@ public class Degree {
         returnlist.add(count);
         returnlist.add(average);
         if (type == ConstantValues.MANDATORY) {
-            returnlist.add(Math.round(average * 100d) / 100d);
+            returnlist.add(Math.round(average * 10d) / 10d);
         }
         return returnlist;
     }
