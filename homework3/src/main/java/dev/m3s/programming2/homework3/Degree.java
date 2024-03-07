@@ -1,5 +1,6 @@
 package dev.m3s.programming2.homework3;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -115,7 +116,8 @@ public class Degree {
             for (int i = 0; i < 2; i++) {
                 returnlist.add(optionalGPA.get(i) + mandatoryGPA.get(i));
             }
-            returnlist.add(returnlist.get(0) / returnlist.get(1));
+            DecimalFormat df = new DecimalFormat("#.00");
+            returnlist.add(Double.valueOf(df.format(returnlist.get(0) / returnlist.get(1))));
             return returnlist;
         }
 
@@ -136,9 +138,7 @@ public class Degree {
         returnlist.add(sum);
         returnlist.add(count);
         returnlist.add(average);
-        if (type == ConstantValues.MANDATORY) {
-            returnlist.add(Math.round(average * 10d) / 10d);
-        }
+        //System.out.println(average);
         return returnlist;
     }
 
