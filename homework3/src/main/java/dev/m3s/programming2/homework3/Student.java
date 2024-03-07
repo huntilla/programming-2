@@ -241,6 +241,6 @@ public class Student extends Person {
     }
 
     public static void main(String[] args) {
-        StudentTest.test2();
+        //StudentTest.test2();
     }
 }
