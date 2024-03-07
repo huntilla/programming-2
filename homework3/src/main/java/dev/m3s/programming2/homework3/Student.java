@@ -70,7 +70,7 @@ public class Student extends Person {
         return false;
     }
 
-    public int addCourses(final int i, StudentCourse[] courses) {
+    public int addCourses(final int i, List<StudentCourse> courses) {
         int count = 0;
 
         if (i >= 0 && i < degreeCount && courses != null) {
@@ -268,16 +268,10 @@ public class Student extends Person {
         StudentCourse studentCourse10 = new StudentCourse(course10, 'A', 2021);
         StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2025);
 
-        StudentCourse[] bachelor = {studentCourse1, studentCourse2, studentCourse3, studentCourse4, studentCourse5};
-        StudentCourse[] master = {studentCourse6, studentCourse7, studentCourse8, studentCourse9, studentCourse10, studentCourse11};
-
         student1.setDegreeTitle(0, "Bachelor of Science");
         student1.setDegreeTitle(1, "Master of Science");
         student1.setTitleOfThesis(0, "Bachelor thesis title");
         student1.setTitleOfThesis(1, "Masters thesis title");
-
-        student1.addCourses(0, bachelor);
-        student1.addCourses(1, master);
 
         student1.setStartYear(2001);
         student1.setGraduationYear(2020);
@@ -362,8 +356,21 @@ public class Student extends Person {
         StudentCourse studentCourse10 = new StudentCourse(course10, 'A', 2021);
         StudentCourse studentCourse11 = new StudentCourse(course11, 'f', 2025);
 
-        StudentCourse[] bachelor = {studentCourse1, studentCourse2, studentCourse3, studentCourse4, studentCourse5};
-        StudentCourse[] master = {studentCourse6, studentCourse7, studentCourse8, studentCourse9, studentCourse10, studentCourse11};
+        List<StudentCourse> bachelor = new ArrayList<>();
+        List<StudentCourse> master = new ArrayList<>();
+
+        bachelor.add(studentCourse1);
+        bachelor.add(studentCourse2);
+        bachelor.add(studentCourse3);
+        bachelor.add(studentCourse4);
+        bachelor.add(studentCourse5);
+
+        master.add(studentCourse6);
+        master.add(studentCourse7);
+        master.add(studentCourse8);
+        master.add(studentCourse9);
+        master.add(studentCourse10);
+        master.add(studentCourse11);
 
         student1.setDegreeTitle(0, "Bachelor of Science");
         student1.setDegreeTitle(1, "Master of Science");

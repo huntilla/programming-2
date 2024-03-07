@@ -9,7 +9,7 @@ abstract class Person {
 
     Person(String lname, String fname) {
         setFirstName(fname);
-        setLasttName(lname);
+        setLastName(lname);
     }
     public String getFirstName() {
         return firstName;
@@ -25,7 +25,7 @@ abstract class Person {
         return lastName;
     }
 
-    public void setLasttName(String lastName) {
+    public void setLastName(String lastName) {
         if (lastName != null) {
             this.lastName = lastName;
         }

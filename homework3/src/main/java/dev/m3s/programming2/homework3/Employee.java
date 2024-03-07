@@ -44,5 +44,5 @@ abstract class Employee extends Person implements Payment{
         return 0.0;
     }
 
-    abstract String getEmployeeIdString();
+    protected abstract String getEmployeeIdString();
 }
