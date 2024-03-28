@@ -16,6 +16,7 @@ public class Course {
            final int period, final double credits, boolean numericGrade) {
         setName(name);
         setCourseCode(code, courseBase);
+        setCourseBase(courseBase);
         setCourseType(type);
         setPeriod(period);
         setCredits(credits);
