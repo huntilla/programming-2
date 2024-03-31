@@ -13,12 +13,12 @@ public class WordList {
         wordList = new ArrayList<>();
     }
 
-    WordList(String fileName) throws FileNotFoundException {
+    WordList(final String fileName) throws FileNotFoundException {
         wordList = new ArrayList<>();
         readFile(fileName);
     }
 
-    private void readFile(String filename) throws FileNotFoundException {
+    private void readFile(final String filename) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(filename));
         while (scanner.hasNextLine()) {
             wordList.add(scanner.nextLine().toLowerCase());
@@ -29,7 +29,7 @@ public class WordList {
         return wordList;
     }
 
-    public WordList theWordsOfLength(int length) {
+    public WordList theWordsOfLength(final int length) {
         WordList wordsOfLength = new WordList();
         if (!wordList.isEmpty()) {
             for (String word : wordList) {
@@ -41,7 +41,7 @@ public class WordList {
         return wordsOfLength;
     }
 
-    public WordList theWordsWithCharacters(String someString) {
+    public WordList theWordsWithCharacters(final String someString) {
         WordList wordsOfLength = theWordsOfLength(someString.length());
         WordList wordsWithCharacters = new WordList();
         if (!wordsOfLength.giveWords().isEmpty()) {

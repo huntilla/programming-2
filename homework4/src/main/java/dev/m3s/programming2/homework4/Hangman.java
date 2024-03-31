@@ -9,7 +9,7 @@ public class Hangman {
     private final List<Character> correctGuessedCharacters = new ArrayList<>();
     private final List<Character> wordAsList = new ArrayList<>();
     private int wordLength;
-    Hangman(WordList wordList, int guesses) {
+    Hangman(final WordList wordList, final int guesses) {
         Random rand = new Random();
         this.guessesLeft = guesses;
         this.wordToBeGuessed = wordList.giveWords().get(rand.nextInt(wordList.giveWords().size()));
@@ -18,6 +18,7 @@ public class Hangman {
     }
 
     public boolean guess(Character c) {
+        c = Character.toLowerCase(c);
         if (!guessedCharacters.contains(c)) {
             guessedCharacters.add(c);
         }
@@ -25,7 +26,9 @@ public class Hangman {
             correctGuessedCharacters.add(c);
             return true;
         }
-        guessesLeft--;
+        if (guessesLeft != 0) {
+            guessesLeft--;
+        }
         return false;
     }
 

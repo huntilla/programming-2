@@ -9,7 +9,7 @@ public class Main {
     private static Hangman game;
     public static void main(String[] args) throws FileNotFoundException {
         try {
-            wordList = new WordList("words.txt");
+            wordList = new WordList("/home/kalle/git/group-0204-project/homework4/words.txt");
             game = new Hangman(wordList, amountOfGuesses);
             playGame();
         } catch (FileNotFoundException e) {
@@ -47,6 +47,6 @@ public class Main {
             System.out.println("Guess a letter: ");
             guess = scanner.nextLine();
         }
-        return Character.toLowerCase(guess.charAt(0));
+        return guess.charAt(0);
     }
 }
