@@ -22,7 +22,7 @@ public class Main {
 
     private static void gameMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welvome to Hangman!");
+        System.out.println("Welcome to Hangman!");
         String input;
         do {
             System.out.println("Would you like to filter the words? Yes/No (Y/N)");
