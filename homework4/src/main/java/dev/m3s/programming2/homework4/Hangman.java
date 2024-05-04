@@ -9,7 +9,7 @@ public class Hangman {
     private final List<Character> correctGuessedCharacters = new ArrayList<>();
     private final List<Character> wordAsList = new ArrayList<>();
     private int wordLength;
-    
+
     Hangman(final WordList wordList, final int guesses) {
         Random rand = new Random();
         this.guessesLeft = guesses;

@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         try {
             wordList = new WordList("words.txt");
-            gameMenu();
+            //gameMenu();
             game = new Hangman(wordList, amountOfGuesses);
             playGame();
         } catch (FileNotFoundException e) {
@@ -36,9 +36,9 @@ public class Main {
 
         if (input.equals("yes") || input.equals("y")) {
             do {
-                System.out.println("Filtering options:\n" +
-                "Filter by length (length/L)\n" +
-                "Filter by characters (char/C)");
+                System.out.println("Filtering options:\n"
+                + "Filter by length (length/L)\n"
+                + "Filter by characters (char/C)");
                 input = scanner.nextLine();
                 if (!input.equals("length") && !input.equals("l") 
                 && !input.equals("char") && !input.equals("c")) {
