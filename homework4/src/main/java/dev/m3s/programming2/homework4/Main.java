@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     private static WordList wordList;
-    private final static int amountOfGuesses = 10;
+    private final static int amountOfGuesses = 15;
     private static Hangman game;
     private static final Scanner scanner = new Scanner(System.in);
 
