@@ -6,13 +6,15 @@ import java.util.Scanner;
 
 public class Main {
     private static WordList wordList;
-    private final static int amountOfGuesses = 4;
+    private final static int amountOfGuesses = 10;
     private static Hangman game;
+    private static final Scanner scanner = new Scanner(System.in);
+
 
     public static void main(String[] args) throws FileNotFoundException {
         try {
             wordList = new WordList("words.txt");
-            //gameMenu();
+            gameMenu();
             game = new Hangman(wordList, amountOfGuesses);
             playGame();
         } catch (FileNotFoundException e) {
@@ -21,7 +23,6 @@ public class Main {
     }
 
     private static void gameMenu() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Hangman!");
         String input;
         do {
@@ -106,7 +107,6 @@ public class Main {
     }
 
     private static char userInput() {
-        Scanner scanner =  new Scanner(System.in);
         String guess;
         do {
             System.out.println("Guess a letter: ");
