@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         try {
-            wordList = new WordList("./words.txt");
+            wordList = new WordList("words.txt");
             //gameMenu();
             game = new Hangman(wordList, amountOfGuesses);
             playGame();
